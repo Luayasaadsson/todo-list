@@ -95,6 +95,12 @@ input[type="checkbox"] {
   color: #777;
 }
 
+.editing {
+  background-color: lightyellow; 
+  border: 3px solid #e3dfdf; 
+  padding: 5px; 
+  border-radius: 10px;
+}
 
 
 #clear-btn {

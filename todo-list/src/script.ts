@@ -89,6 +89,7 @@ function renderTodos(): void {
     textSpan.textContent = todo.text;
     textSpan.className = todo.completed ? 'completed' : '';
     textSpan.contentEditable = todo.editing ? 'true' : 'false';
+    textSpan.className = todo.editing ? 'editing' : (todo.completed ? 'completed' : '');
 
     const deleteButton: HTMLButtonElement = document.createElement('button');
     deleteButton.className = 'todo-btn';
@@ -120,6 +121,9 @@ function editTodo(id: number, textSpan: HTMLSpanElement): void {
       todo.text = textSpan.textContent || todo.text;
       todo.editing = false;
     } else {
+      todos.forEach((otherTodo) => {
+        otherTodo.editing = false;
+      });
       todo.editing = true;
     }
     renderTodos();
