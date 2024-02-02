@@ -29,9 +29,11 @@ function addTodo(): void {
   const input = document.getElementById('new-todo') as HTMLInputElement;
   const text = input.value.trim();
 
-  if (text) {
+  if (!text) {
+    alert("Det finns inga todos att lägga till.");
+  } else {
     const newTodo: Todo = { id: Date.now(), text, completed: false, editing: false };
-    todos.push(newTodo);
+    todos.unshift(newTodo);
     input.value = '';
     renderTodos();
   }
@@ -54,8 +56,12 @@ function toggleTodo(id: number): void {
 }
 
 function clearTodos(): void {
-  todos.length = 0;
-  renderTodos();
+  if (todos.length === 0) {
+    alert("Det finns inga todos att rensa.");
+  } else {
+    todos.length = 0;
+    renderTodos();
+  }
 }
 
 function renderTodos(): void {
