@@ -5,12 +5,18 @@ type Todo = {
   editing?: boolean; // Lägger till en valfri flagga för redigering
 };
 
-const todos: Todo[] = [];
+let todos: Todo[] = [];
+
+function saveTodos(): void {
+  localStorage.setItem('todos', JSON.stringify(todos));
+}
 
 document.addEventListener('DOMContentLoaded', () => {
   const addButton = document.getElementById('add-btn') as HTMLButtonElement;
   const clearButton = document.getElementById('clear-btn') as HTMLButtonElement;
   const newTodoInput = document.getElementById('new-todo') as HTMLInputElement;
+
+  todos = JSON.parse(localStorage.getItem("todos") || "[]") as Todo[];
 
   addButton.addEventListener('click', addTodo);
   clearButton.addEventListener('click', clearTodos);
@@ -36,6 +42,7 @@ function addTodo(): void {
     todos.unshift(newTodo);
     input.value = '';
     renderTodos();
+    saveTodos();
   }
 }
 
@@ -44,6 +51,7 @@ function deleteTodo(id: number): void {
   if (index !== -1) {
     todos.splice(index, 1);
     renderTodos();
+    saveTodos();
   }
 }
 
@@ -52,6 +60,7 @@ function toggleTodo(id: number): void {
   if (todo) {
     todo.completed = !todo.completed;
     renderTodos();
+    saveTodos();
   }
 }
 
@@ -59,8 +68,9 @@ function clearTodos(): void {
   if (todos.length === 0) {
     alert("Det finns inga todos att rensa.");
   } else {
-    todos.length = 0;
+    todos = []; 
     renderTodos();
+    saveTodos();
   }
 }
 
@@ -113,5 +123,6 @@ function editTodo(id: number, textSpan: HTMLSpanElement): void {
       todo.editing = true;
     }
     renderTodos();
+    saveTodos();
   }
 }
