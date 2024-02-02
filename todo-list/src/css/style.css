@@ -5,22 +5,37 @@ body {
   margin: 0;
   box-sizing: border-box;
   font-family: Arial, Helvetica, sans-serif;
+  background-color: rgb(172, 132, 132);
 }
 
-#app {
-  width: 300px;
-  margin: 30px auto;
+.todo-title {
+  text-align: center;
 }
 
-#new-todo {
-  width: calc(100% - 45px);
-  margin-right: 5px;
+.todo-list-container {
+  position: relative;
+  background-color: white;
+  width: 80%;
+  margin: 0 auto;
+  padding: 30px;
+  border-radius: 20px;
 }
 
-button {
-  width: 40px;
-  height: 22px;
+.todo-list-new {
+  border: none;
+  border-bottom: 1px solid black;
+  width: 50%;
 }
+
+.add-btn {
+  font-size: 1rem;
+  width: 100px;
+  padding: 8px;
+  border-radius: 30px;
+  background-color: rgb(98, 200, 166);
+  border: none;
+}
+
 
 ul {
   list-style: block;
@@ -28,22 +43,34 @@ ul {
 }
 
 li {
-  margin: 5px 0;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  overflow: auto;
+  margin-bottom: 20px;
+  padding: 15px;
+  background-color: rgb(222, 219, 219);
+  border-radius: 15px;
+  gap: 10px;
+}
+
+.todo-buttons {
+  display: flex;
+  flex-direction: column;
+  margin-left: auto; 
+  gap: 5px; 
+
 }
 
 .completed {
   text-decoration: line-through;
 }
 
-.delete-btn {
-  color: red;
-  cursor: pointer;
-}
-
-.edit-btn {
-  color: blue;
-  cursor: pointer;
+#clear-btn {
+  position: absolute;
+  right: 5%;
+  border-radius: 20px;
+  font-size: 1rem;
+  background-color: rgb(197, 33, 33);
+  color: white;
 }

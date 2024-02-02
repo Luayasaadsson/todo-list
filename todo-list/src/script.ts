@@ -1,4 +1,3 @@
-
 type Todo = {
   id: number;
   text: string;
@@ -39,7 +38,7 @@ function addTodo(): void {
 }
 
 function deleteTodo(id: number): void {
-  const index = todos.findIndex(todo => todo.id === id);
+  const index: number = todos.findIndex((todo: Todo) => todo.id === id);
   if (index !== -1) {
     todos.splice(index, 1);
     renderTodos();
@@ -47,7 +46,7 @@ function deleteTodo(id: number): void {
 }
 
 function toggleTodo(id: number): void {
-  const todo = todos.find(todo => todo.id === id);
+  const todo: Todo | undefined = todos.find((todo: Todo) => todo.id === id);
   if (todo) {
     todo.completed = !todo.completed;
     renderTodos();
@@ -60,46 +59,46 @@ function clearTodos(): void {
 }
 
 function renderTodos(): void {
-  const list = document.getElementById('todo-list') as HTMLUListElement;
+  const list: HTMLElement = document.getElementById('todo-list') as HTMLUListElement;
   list.innerHTML = '';
 
-  todos.forEach(todo => {
-    const li = document.createElement('li');
-    const checkBox = document.createElement('input');
+  todos.forEach((todo: Todo) => {
+    const li: HTMLElement = document.createElement('li');
+    const checkBox: HTMLInputElement = document.createElement('input');
     checkBox.type = 'checkbox';
     checkBox.checked = todo.completed;
     checkBox.addEventListener('change', () => toggleTodo(todo.id));
 
-    const textSpan = document.createElement('span');
+    const textSpan: HTMLSpanElement = document.createElement('span');
     textSpan.textContent = todo.text;
     textSpan.className = todo.completed ? 'completed' : '';
-    if (todo.editing) {
-      textSpan.contentEditable = 'true';
-      textSpan.focus();
-    } else {
-      textSpan.contentEditable = 'false';
-    }
+    textSpan.contentEditable = todo.editing ? 'true' : 'false';
 
-    const deleteButton = document.createElement('button');
-    deleteButton.textContent = 'X';
-    deleteButton.className = 'delete-btn';
+    const deleteButton: HTMLButtonElement = document.createElement('button');
+    deleteButton.className = 'todo-btn';
+    deleteButton.innerHTML = '<i class="fa-regular fa-trash-can"></i>';
     deleteButton.addEventListener('click', () => deleteTodo(todo.id));
-
-    const editButton = document.createElement('button');
-    editButton.textContent = todo.editing ? 'Save' : 'Edit';
-    editButton.className = 'edit-btn';
+    
+    const editButton: HTMLButtonElement = document.createElement('button');
+    editButton.className = 'todo-btn';
+    editButton.innerHTML = todo.editing ? '<i class="fa-regular fa-bookmark"></i>' : '<i class="fa-regular fa-pen-to-square"></i>'; 
     editButton.addEventListener('click', () => editTodo(todo.id, textSpan));
+    
+
+    const todoButtons: HTMLDivElement = document.createElement('div');
+    todoButtons.className = 'todo-buttons'; 
+    todoButtons.appendChild(editButton);
+    todoButtons.appendChild(deleteButton);
 
     li.appendChild(checkBox);
     li.appendChild(textSpan);
-    li.appendChild(editButton);
-    li.appendChild(deleteButton);
+    li.appendChild(todoButtons); 
     list.appendChild(li);
   });
 }
 
 function editTodo(id: number, textSpan: HTMLSpanElement): void {
-  const todo = todos.find(todo => todo.id === id);
+  const todo: Todo | undefined = todos.find((todo) => todo.id === id);
   if (todo) {
     if (todo.editing) {
       todo.text = textSpan.textContent || todo.text;

@@ -4,18 +4,23 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://kit.fontawesome.com/4206a001c2.js" crossorigin="anonymous"></script>
     <title>Todo List</title>
   </head>
   <body>
-    <div id="app">
-      
-      <input type="text" id="new-todo" placeholder="Add a Todo...">
-      <button id="add-btn">Add Todo</button>
-      <ul id="todo-list">
-        <!-- Här genereras alla todos-->
-      </ul>
+    <h1 class="todo-title">Things to do...</h1>
+    <div class="todo-list-container">
+        <div class="todo-list-add">
+          <input class="todo-list-new" type="text" id="new-todo" placeholder="Add a Todo...">
+          <button class="add-btn" id="add-btn">Add Todo</button>
+          <ul id="todo-list">
+          <!-- Här genereras alla todos-->
+        </ul>
+      </div>
+        <button id="clear-btn">Clear list</button>
+
     </div>
-    <button id="clear-btn">Clear List</button>
+   
     <script type="module" src="/src/main.ts"></script>
   </body>
 </html>
