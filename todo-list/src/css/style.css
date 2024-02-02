@@ -1,12 +1,19 @@
 
 
 body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
   padding: 0;
   margin: 0;
   box-sizing: border-box;
   font-family: Arial, Helvetica, sans-serif;
   background-color: rgb(172, 132, 132);
+  text-align: center;
 }
+
 
 .todo-title {
   text-align: center;
@@ -38,7 +45,6 @@ body {
 
 
 ul {
-  list-style: block;
   padding: 0;
 }
 
@@ -47,23 +53,29 @@ li {
   justify-content: space-between;
   align-items: center;
   overflow: auto;
-  margin-bottom: 20px;
-  padding: 15px;
+  margin-bottom: 10px;
+  padding: 7px;
   background-color: rgb(222, 219, 219);
   border-radius: 15px;
   gap: 10px;
 }
 
-.todo-buttons {
+.todo-buttons button {
   display: flex;
   flex-direction: column;
-  margin-left: auto; 
-  gap: 5px; 
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  margin-bottom: 8px;
+}
 
+.todo-buttons button:last-child {
+  margin-bottom: 0;
 }
 
 .completed {
-  text-decoration: line-through;
+  text-decoration: line-through solid 2px;
+  font-size: 1rem;
 }
 
 #clear-btn {
