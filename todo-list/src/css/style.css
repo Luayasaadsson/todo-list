@@ -86,6 +86,9 @@ li {
 span {
   overflow-wrap: break-word; 
   max-width: 35%; 
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .date-time {
@@ -97,6 +100,8 @@ span {
 }
 
 input[type="checkbox"] {
+  position: absolute;
+  left: 0;
   cursor: pointer;
 }
 
@@ -143,10 +148,51 @@ input[type="checkbox"] {
   background-color: rgb(197, 33, 33);
 }
 
+@media (max-width: 1000px) {
+.todo-list-new {
+  width: 40%;
+}
+}
+
+@media (max-width: 825px) {
+  .todo-list-new {
+    width: 30%;
+  }
+  }
+
+@media (max-width: 725px) {
+  .todo-list-new {
+    width: 30%;
+  }
+
+  .search-todo {
+    width: 30%;
+  }
+
+  .date-time {
+    font-size: 0.5rem;
+  }
+
+  span {
+    font-size: 0.6rem;
+  }
+
+  .add-btn {
+    width: 80px;
+  }
+}
+
+@media (max-width: 666px) {
+.add-btn {
+  width: 70px;
+  font-size: 0.6rem;
+}
+}
+
 @media (max-width: 450px) {
   .add-btn {
-    font-size: 0.6rem;
-    width: 60px;
+    font-size: 0.5rem;
+    width: 50px;
     height: 20px; 
   }
 
@@ -156,6 +202,10 @@ input[type="checkbox"] {
 
   #clear-btn {
     font-size: 0.6rem;
+  }
+
+  .date-time {
+    font-size: 0.4rem;
   }
 }
 
