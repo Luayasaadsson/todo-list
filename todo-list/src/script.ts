@@ -100,9 +100,16 @@ function searchTodos() {
 }
 
 function renderTodos(filteredTodos: Todo[] = todos): void {
-  const list: HTMLElement = document.getElementById('todo-list') as HTMLUListElement;
+  const list = document.getElementById('todo-list') as HTMLUListElement;
   list.innerHTML = '';
 
+  // Om ingen todo hittas, skriver ut ett meddelande
+  if(filteredTodos.length == 0) {
+    const noResultLi = document.createElement("li");
+    noResultLi.textContent = "Din sökta todo finns inte";
+    list.appendChild(noResultLi);
+  } else {
+  // Annars renderas matchande todos som vanligt  
   filteredTodos.forEach((todo: Todo) => {
     const li: HTMLElement = document.createElement('li');
     const checkBox: HTMLInputElement = document.createElement('input');
@@ -142,6 +149,7 @@ function renderTodos(filteredTodos: Todo[] = todos): void {
     li.appendChild(todoButtons); 
     list.appendChild(li);
   });
+  }
 }
 
 function editTodo(id: number, textSpan: HTMLSpanElement): void {
