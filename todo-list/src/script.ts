@@ -16,11 +16,13 @@ document.addEventListener('DOMContentLoaded', () => {
   const addButton = document.getElementById('add-btn') as HTMLButtonElement;
   const clearButton = document.getElementById('clear-btn') as HTMLButtonElement;
   const newTodoInput = document.getElementById('new-todo') as HTMLInputElement;
+  const searchInput = document.getElementById('search-input') as HTMLInputElement; 
 
   todos = JSON.parse(localStorage.getItem("todos") || "[]") as Todo[];
 
   addButton.addEventListener('click', addTodo);
   clearButton.addEventListener('click', clearTodos);
+  searchInput.addEventListener("input", searchTodos);
 
   // Lägger till todos när användaren trycker på Enter
   newTodoInput.addEventListener('keypress', (e) => {
@@ -55,7 +57,7 @@ function addTodo(): void {
 
     };
     todos.unshift(newTodo);
-    input.value = '';
+    input.value = "";
     renderTodos();
     saveTodos();
   }
@@ -90,11 +92,18 @@ function clearTodos(): void {
   }
 }
 
-function renderTodos(): void {
+function searchTodos() {
+  const searchInput = document.getElementById('search-input') as HTMLInputElement;
+  const searchTerm: string = searchInput.value.toLowerCase();
+  const filteredTodos: Todo[] = searchTerm ? todos.filter(todo => todo.text.toLowerCase().includes(searchTerm)) : todos;
+  renderTodos(filteredTodos);
+}
+
+function renderTodos(filteredTodos: Todo[] = todos): void {
   const list: HTMLElement = document.getElementById('todo-list') as HTMLUListElement;
   list.innerHTML = '';
 
-  todos.forEach((todo: Todo) => {
+  filteredTodos.forEach((todo: Todo) => {
     const li: HTMLElement = document.createElement('li');
     const checkBox: HTMLInputElement = document.createElement('input');
     checkBox.type = 'checkbox';
