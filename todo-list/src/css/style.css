@@ -58,17 +58,26 @@ li {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  position: relative;
   overflow: auto;
   margin-bottom: 10px;
-  padding: 7px;
+  padding: 20px;
   background-color: rgb(222, 219, 219);
-  border-radius: 15px;
+  border-radius: 2px;
   gap: 10px;
 }
 
 span {
   overflow-wrap: break-word; 
-  max-width: 70%; 
+  max-width: 35%; 
+}
+
+.date-time {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  font-size: 11px;
+  text-decoration: underline;
 }
 
 input[type="checkbox"] {
@@ -82,11 +91,13 @@ input[type="checkbox"] {
   background: transparent;
   border: none;
   cursor: pointer;
-  margin-bottom: 8px;
+  margin-top: -20px;
+  position: absolute;
+  right: 0;
 }
 
 .todo-buttons button:last-child {
-  margin-bottom: 0;
+  margin-top: 1px;
 }
 
 .completed {

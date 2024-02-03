@@ -3,6 +3,7 @@ type Todo = {
   text: string;
   completed: boolean;
   editing?: boolean; // Lägger till en valfri flagga för redigering
+  createdAt: string;
 };
 
 let todos: Todo[] = [];
@@ -38,13 +39,28 @@ function addTodo(): void {
   if (!text) {
     alert("Det finns inga todos att lägga till.");
   } else {
-    const newTodo: Todo = { id: Date.now(), text, completed: false, editing: false };
+    const now = new Date();
+    const timeOptions: Intl.DateTimeFormatOptions = { hour: '2-digit', minute: '2-digit', hour12: false };
+    const dateOptions: Intl.DateTimeFormatOptions = { year: 'numeric', month: 'long', day: 'numeric' };
+    const time = now.toLocaleTimeString('sv-SE', timeOptions);
+    const date = now.toLocaleDateString('sv-SE', dateOptions);
+    const createdAt = `${time} ${date}`;
+
+    const newTodo: Todo = {
+      id: Date.now(),
+      text,
+      completed: false,
+      editing: false,
+      createdAt: createdAt 
+
+    };
     todos.unshift(newTodo);
     input.value = '';
     renderTodos();
     saveTodos();
   }
 }
+
 
 function deleteTodo(id: number): void {
   const index: number = todos.findIndex((todo: Todo) => todo.id === id);
@@ -107,6 +123,11 @@ function renderTodos(): void {
     todoButtons.appendChild(editButton);
     todoButtons.appendChild(deleteButton);
 
+    const createdAtSpan: HTMLSpanElement = document.createElement('span');
+    createdAtSpan.classList.add('date-time');
+    createdAtSpan.textContent = `${todo.createdAt}`;
+    
+    li.appendChild(createdAtSpan);
     li.appendChild(checkBox);
     li.appendChild(textSpan);
     li.appendChild(todoButtons); 
