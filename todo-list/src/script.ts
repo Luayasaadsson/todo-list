@@ -2,22 +2,28 @@ type Todo = {
   id: number;
   text: string;
   completed: boolean;
-  editing?: boolean; // Lägger till en valfri flagga för redigering
+  editing?: boolean; // Flagga för redigering (valfri)
   createdAt: string;
 };
 
 let todos: Todo[] = [];
 
+// Funktion för att spara todos i localStorage
 function saveTodos(): void {
-  localStorage.setItem('todos', JSON.stringify(todos));
+  try {
+    localStorage.setItem('todos', JSON.stringify(todos));
+  } catch (error) {
+    console.error('Ett fel uppstod när todos skulle sparas i localStorage:', error);
+  }
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-  const addButton = document.getElementById('add-btn') as HTMLButtonElement;
-  const clearButton = document.getElementById('clear-btn') as HTMLButtonElement;
-  const newTodoInput = document.getElementById('new-todo') as HTMLInputElement;
-  const searchInput = document.getElementById('search-input') as HTMLInputElement; 
+  const addButton: HTMLButtonElement = document.getElementById('add-btn') as HTMLButtonElement;
+  const clearButton: HTMLButtonElement = document.getElementById('clear-btn') as HTMLButtonElement;
+  const newTodoInput: HTMLInputElement = document.getElementById('new-todo') as HTMLInputElement;
+  const searchInput: HTMLInputElement = document.getElementById('search-input') as HTMLInputElement;
 
+  // Laddar todos från localStorage vid sidans laddning
   todos = JSON.parse(localStorage.getItem("todos") || "[]") as Todo[];
 
   addButton.addEventListener('click', addTodo);
@@ -25,7 +31,7 @@ document.addEventListener('DOMContentLoaded', () => {
   searchInput.addEventListener("input", searchTodos);
 
   // Lägger till todos när användaren trycker på Enter
-  newTodoInput.addEventListener('keypress', (e) => {
+  newTodoInput.addEventListener('keypress', (e: KeyboardEvent) => {
     if (e.key === 'Enter') {
       addTodo();
     }
@@ -35,26 +41,25 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 function addTodo(): void {
-  const input = document.getElementById('new-todo') as HTMLInputElement;
-  const text = input.value.trim();
+  const input: HTMLInputElement = document.getElementById('new-todo') as HTMLInputElement;
+  const text: string = input.value.trim();
 
   if (!text) {
-    alert("Lägga till en todo först.");
+    alert("Lägg till en todo först.");
   } else {
-    const now = new Date();
+    const now: Date = new Date();
     const timeOptions: Intl.DateTimeFormatOptions = { hour: '2-digit', minute: '2-digit', hour12: false };
     const dateOptions: Intl.DateTimeFormatOptions = { year: 'numeric', month: 'long', day: 'numeric' };
-    const time = now.toLocaleTimeString('sv-SE', timeOptions);
-    const date = now.toLocaleDateString('sv-SE', dateOptions);
-    const createdAt = `${time} ${date}`;
+    const time: string = now.toLocaleTimeString('sv-SE', timeOptions);
+    const date: string = now.toLocaleDateString('sv-SE', dateOptions);
+    const createdAt: string = `${time} ${date}`;
 
     const newTodo: Todo = {
       id: Date.now(),
       text,
       completed: false,
       editing: false,
-      createdAt: createdAt 
-
+      createdAt
     };
     todos.unshift(newTodo);
     input.value = "";
@@ -62,7 +67,6 @@ function addTodo(): void {
     saveTodos();
   }
 }
-
 
 function deleteTodo(id: number): void {
   const index: number = todos.findIndex((todo: Todo) => todo.id === id);
@@ -86,14 +90,14 @@ function clearTodos(): void {
   if (todos.length === 0) {
     alert("Det finns inga todos att rensa.");
   } else {
-    todos = []; 
+    todos = [];
     renderTodos();
     saveTodos();
   }
 }
 
 function searchTodos() {
-  const searchInput = document.getElementById('search-input') as HTMLInputElement;
+  const searchInput: HTMLInputElement = document.getElementById('search-input') as HTMLInputElement;
   const searchTerm: string = searchInput.value.toLowerCase();
   const filteredTodos: Todo[] = searchTerm
     ? todos.filter(todo => todo.text.toLowerCase().includes(searchTerm))
@@ -103,55 +107,54 @@ function searchTodos() {
 }
 
 function renderTodos(filteredTodos: Todo[] = todos): void {
-  const list = document.getElementById('todo-list') as HTMLUListElement;
+  const list: HTMLUListElement = document.getElementById('todo-list') as HTMLUListElement;
   list.innerHTML = '';
 
   // Om ingen todo hittas, skriver ut ett meddelande
-  if(filteredTodos.length === 0) {
-    const noResultLi = document.createElement("li");
+  if (filteredTodos.length === 0) {
+    const noResultLi: HTMLLIElement = document.createElement("li");
     noResultLi.textContent = todos.length === 0 ? "Lägg till en todo" : "Din sökta todo finns inte";
     list.appendChild(noResultLi);
   } else {
-  // Annars renderas matchande todos som vanligt  
-  filteredTodos.forEach((todo: Todo) => {
-    const li: HTMLElement = document.createElement('li');
-    const checkBox: HTMLInputElement = document.createElement('input');
-    checkBox.type = 'checkbox';
-    checkBox.checked = todo.completed;
-    checkBox.addEventListener('change', () => toggleTodo(todo.id));
+    // Annars renderas matchande todos som vanligt
+    filteredTodos.forEach((todo: Todo) => {
+      const li: HTMLElement = document.createElement('li');
+      const checkBox: HTMLInputElement = document.createElement('input');
+      checkBox.type = 'checkbox';
+      checkBox.checked = todo.completed;
+      checkBox.addEventListener('change', () => toggleTodo(todo.id));
 
-    const textSpan: HTMLSpanElement = document.createElement('span');
-    textSpan.textContent = todo.text;
-    textSpan.className = todo.completed ? 'completed' : '';
-    textSpan.contentEditable = todo.editing ? 'true' : 'false';
-    textSpan.className = todo.editing ? 'editing' : (todo.completed ? 'completed' : '');
+      const textSpan: HTMLSpanElement = document.createElement('span');
+      textSpan.textContent = todo.text;
+      textSpan.className = todo.completed ? 'completed' : '';
+      textSpan.contentEditable = todo.editing ? 'true' : 'false';
+      textSpan.className = todo.editing ? 'editing' : (todo.completed ? 'completed' : '');
 
-    const deleteButton: HTMLButtonElement = document.createElement('button');
-    deleteButton.className = 'todo-btn';
-    deleteButton.innerHTML = '<i class="fa-regular fa-trash-can"></i>';
-    deleteButton.addEventListener('click', () => deleteTodo(todo.id));
-    
-    const editButton: HTMLButtonElement = document.createElement('button');
-    editButton.className = 'todo-btn';
-    editButton.innerHTML = todo.editing ? '<i class="fa-regular fa-bookmark"></i>' : '<i class="fa-regular fa-pen-to-square"></i>'; 
-    editButton.addEventListener('click', () => editTodo(todo.id, textSpan));
-    
+      const deleteButton: HTMLButtonElement = document.createElement('button');
+      deleteButton.className = 'todo-btn';
+      deleteButton.innerHTML = '<i class="fa-regular fa-trash-can"></i>';
+      deleteButton.addEventListener('click', () => deleteTodo(todo.id));
 
-    const todoButtons: HTMLDivElement = document.createElement('div');
-    todoButtons.className = 'todo-buttons'; 
-    todoButtons.appendChild(editButton);
-    todoButtons.appendChild(deleteButton);
+      const editButton: HTMLButtonElement = document.createElement('button');
+      editButton.className = 'todo-btn';
+      editButton.innerHTML = todo.editing ? '<i class="fa-regular fa-bookmark"></i>' : '<i class="fa-regular fa-pen-to-square"></i>';
+      editButton.addEventListener('click', () => editTodo(todo.id, textSpan));
 
-    const createdAtSpan: HTMLSpanElement = document.createElement('span');
-    createdAtSpan.classList.add('date-time');
-    createdAtSpan.textContent = `${todo.createdAt}`;
-    
-    li.appendChild(createdAtSpan);
-    li.appendChild(checkBox);
-    li.appendChild(textSpan);
-    li.appendChild(todoButtons); 
-    list.appendChild(li);
-  });
+      const todoButtons: HTMLDivElement = document.createElement('div');
+      todoButtons.className = 'todo-buttons';
+      todoButtons.appendChild(editButton);
+      todoButtons.appendChild(deleteButton);
+
+      const createdAtSpan: HTMLSpanElement = document.createElement('span');
+      createdAtSpan.classList.add('date-time');
+      createdAtSpan.textContent = `${todo.createdAt}`;
+
+      li.appendChild(createdAtSpan);
+      li.appendChild(checkBox);
+      li.appendChild(textSpan);
+      li.appendChild(todoButtons);
+      list.appendChild(li);
+    });
   }
 }
 
