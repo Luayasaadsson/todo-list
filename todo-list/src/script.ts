@@ -113,7 +113,7 @@ function renderTodos(filteredTodos: Todo[] = todos): void {
   // Om ingen todo hittas, skriver ut ett meddelande
   if (filteredTodos.length === 0) {
     const noResultLi: HTMLLIElement = document.createElement("li");
-    noResultLi.textContent = todos.length === 0 ? "Lägg till en todo" : "Ingen matchning";
+    noResultLi.textContent = todos.length === 0 ? "Todo listan är tom" : "Ingen matchning";
     list.appendChild(noResultLi);
   } else {
     // Annars renderas matchande todos som vanligt
