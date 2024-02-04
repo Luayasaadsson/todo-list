@@ -69,11 +69,17 @@ function addTodo(): void {
 }
 
 function deleteTodo(id: number): void {
-  const index: number = todos.findIndex((todo: Todo) => todo.id === id);
-  if (index !== -1) {
-    todos.splice(index, 1);
-    renderTodos();
-    saveTodos();
+  const todo: Todo | undefined = todos.find((todo: Todo) => todo.id === id);
+  if (todo) {
+    const confirmDelete = confirm(`Är du säker på att du vill ta bort todo: "${todo.text}"?`);
+    if (confirmDelete) {
+      const index: number = todos.findIndex((todo: Todo) => todo.id === id);
+      if (index !== -1) {
+        todos.splice(index, 1);
+        renderTodos();
+        saveTodos();
+      }
+    }
   }
 }
 
@@ -90,9 +96,12 @@ function clearTodos(): void {
   if (todos.length === 0) {
     alert("Det finns inga todos att rensa.");
   } else {
-    todos = [];
-    renderTodos();
-    saveTodos();
+    const confirmClear = confirm("Är du säker på att du vill rensa hela todo-listan?");
+    if (confirmClear) {
+      todos = [];
+      renderTodos();
+      saveTodos();
+    }
   }
 }
 
