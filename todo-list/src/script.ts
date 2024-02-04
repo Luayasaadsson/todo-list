@@ -39,7 +39,7 @@ function addTodo(): void {
   const text = input.value.trim();
 
   if (!text) {
-    alert("Det finns inga todos att lägga till.");
+    alert("Lägga till en todo först.");
   } else {
     const now = new Date();
     const timeOptions: Intl.DateTimeFormatOptions = { hour: '2-digit', minute: '2-digit', hour12: false };
@@ -109,7 +109,7 @@ function renderTodos(filteredTodos: Todo[] = todos): void {
   // Om ingen todo hittas, skriver ut ett meddelande
   if(filteredTodos.length === 0) {
     const noResultLi = document.createElement("li");
-    noResultLi.textContent = todos.length === 0 ? "Skapa en todo" : "Din sökta todo finns inte";
+    noResultLi.textContent = todos.length === 0 ? "Lägg till en todo" : "Din sökta todo finns inte";
     list.appendChild(noResultLi);
   } else {
   // Annars renderas matchande todos som vanligt  
