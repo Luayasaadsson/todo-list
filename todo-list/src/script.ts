@@ -95,7 +95,10 @@ function clearTodos(): void {
 function searchTodos() {
   const searchInput = document.getElementById('search-input') as HTMLInputElement;
   const searchTerm: string = searchInput.value.toLowerCase();
-  const filteredTodos: Todo[] = searchTerm ? todos.filter(todo => todo.text.toLowerCase().includes(searchTerm)) : todos;
+  const filteredTodos: Todo[] = searchTerm
+    ? todos.filter(todo => todo.text.toLowerCase().includes(searchTerm))
+    : todos;
+
   renderTodos(filteredTodos);
 }
 
@@ -104,9 +107,9 @@ function renderTodos(filteredTodos: Todo[] = todos): void {
   list.innerHTML = '';
 
   // Om ingen todo hittas, skriver ut ett meddelande
-  if(filteredTodos.length == 0) {
+  if(filteredTodos.length === 0) {
     const noResultLi = document.createElement("li");
-    noResultLi.textContent = "Din sökta todo finns inte";
+    noResultLi.textContent = todos.length === 0 ? "Skapa en todo" : "Din sökta todo finns inte";
     list.appendChild(noResultLi);
   } else {
   // Annars renderas matchande todos som vanligt  
