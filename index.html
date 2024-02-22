@@ -17,6 +17,20 @@
           </button>      
           <input class="search-todo" type="text" id="search-input" placeholder="Sök todo...">
 
+          <button class="trash" id="trash">
+            <i class="fa-regular fa-trash-can"></i>
+          </button>
+          <div id="trash-modal" class="modal">
+            <div class="modal-content">
+              <div class="trash-header">
+                <span class="close">&times;</span>
+                <h2 class="trash-text">Papperskorgen</h2>
+              </div>
+              <ul id="trash-list"></ul>
+            </div>
+          </div>
+          
+
           <ul id="todo-list">
           <!-- Här genereras alla todos-->
         </ul>

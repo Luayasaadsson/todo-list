@@ -23,7 +23,7 @@ body {
   position: relative;
   background-color: white;
   width: 50%;
-  max-height: 22.5rem;
+  height: 22rem;
   margin: 0 auto;
   padding: 30px;
   border-radius: 20px;
@@ -68,6 +68,7 @@ body {
 
 ul {
   padding: 0;
+  margin-top: 3rem;
 }
 
 li {
@@ -89,6 +90,126 @@ span {
   display: block;
   margin-left: auto;
   margin-right: auto;
+}
+
+.trash {
+  position: absolute;
+  top: 15%;
+  right: 30px;
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+.trash-btn:hover {
+  color: rgb(103, 164, 103);
+}
+
+.modal {
+  display: none; 
+  position: absolute;
+  z-index: 1; 
+  left: 72%;
+  top: 25%;
+  width: 50%; 
+  height: 67%; 
+}
+
+.modal-content {
+  background-color: rgb(247, 250, 253);
+  border: 1px solid #888;
+  border-radius: 15px;
+  width: 50%;
+  height: 95%;
+  overflow-y: auto;
+}
+
+.trash-header {
+  position: sticky;
+  top: 0;
+  background-color: white;
+  padding: 5px;
+  z-index: 1;
+  border-radius: 5px;
+  margin-bottom: -40px;
+  padding-left: 10px;
+}
+
+.trash-text {
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.close {
+  color: #121111;
+  float: right;
+  font-size: 30px;
+  margin-right: 10px;
+}
+
+.close:hover {
+  color: rgb(182, 17, 17);
+  text-decoration: none;
+  cursor: pointer;
+}
+
+#trash-modal .modal-content #trash-list li {
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  background-color: #d08888;
+  color: white;
+}
+
+#trash-modal .modal-content #trash-list button {
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+
+}
+
+#trash-modal .modal-content #trash-list button:hover {
+  /* Lägg till din anpassade hover-effekt här */
+  background-color: rgb(98, 200, 166);
+}
+
+@keyframes vibrate {
+  0%,
+  100% {
+    transform: translate(0);
+  }
+  10% {
+    transform: translate(-2px, 2px);
+  }
+  20% {
+    transform: translate(-2px, -2px);
+  }
+  30% {
+    transform: translate(2px, 2px);
+  }
+  40% {
+    transform: translate(2px, -2px);
+  }
+  50% {
+    transform: translate(-2px, -2px);
+  }
+  60% {
+    transform: translate(-2px, 2px);
+  }
+  70% {
+    transform: translate(2px, -2px);
+  }
+  80% {
+    transform: translate(2px, 2px);
+  }
+  90% {
+    transform: translate(-2px, 2px);
+  }
+}
+
+.vibrate-animation {
+  animation: vibrate 0.5s ease;
 }
 
 .date-time {
