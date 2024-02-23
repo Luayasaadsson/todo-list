@@ -169,27 +169,22 @@ function deleteTodo(id: number): void {
   // Hittar todo-posten med det givna id:t.
   const todo: Todo | undefined = todos.find((todo: Todo) => todo.id === id);
   if (todo) {
-    // Fråga till användaren om de är säkra på att de vill ta bort todo-posten.
-    const confirmDelete: boolean = confirm(`Är du säker på att du vill ta bort todo: "${todo.text}"?`);
-    if (confirmDelete) {
-      // Tar bort todo-posten från arrayen och lägger den i papperskorgen.
-      const index: number = todos.findIndex((todo: Todo) => todo.id === id);
-      if (index !== -1) {
-        const deletedTodo: Todo = todos.splice(index, 1)[0];
-        trash.unshift(deletedTodo); // Lägger den borttagna todo i papperskorgen.
-        renderTodos(); // Renderar todos.
-        saveTodos(); // Sparar todos.
-        renderTrashList(); // Uppdaterar listan i papperskorgen.
+    // Tar bort todo-posten från arrayen och lägger den i papperskorgen.
+    const index: number = todos.findIndex((todo: Todo) => todo.id === id);
+    if (index !== -1) {
+      const deletedTodo: Todo = todos.splice(index, 1)[0];
+      trash.unshift(deletedTodo); // Lägger den borttagna todo i papperskorgen.
+      renderTodos(); // Renderar todos.
+      saveTodos(); // Sparar todos.
+      renderTrashList(); // Uppdaterar listan i papperskorgen.
 
-        // Återställer papperskorgsikonen efter en kort fördröjning
-        setTimeout(() => {
-          trashButton.classList.remove('vibrate-animation');
-        }, 500);
-      }
+      // Återställer papperskorgsikonen efter en kort fördröjning
+      setTimeout(() => {
+        trashButton.classList.remove('vibrate-animation');
+      }, 500);
     }
   }
 }
-
 
 // Funktion för att markera en todo som klar eller ej klar.
 function toggleTodo(id: number): void {

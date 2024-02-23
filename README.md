@@ -26,7 +26,7 @@ Användare kan markera en todo som klar eller obearbetad genom att klicka på kr
 
 ### Ta bort todo
 
-Användare kan ta bort en todo genom att klicka på papperskorgsikonen bredvid den. Innan borttagning bekräftar en dialogruta användaren om de är säkra på att de vill ta bort den valda todo.
+Användare kan ta bort en todo genom att klicka på papperskorgsikonen bredvid den.
 
 ### Rensa todo-listan
 
