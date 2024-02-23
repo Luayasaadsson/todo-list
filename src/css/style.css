@@ -166,16 +166,25 @@ span {
   color: white;
 }
 
-#trash-modal .modal-content #trash-list button {
+.restore-btn {
   border: none;
   border-radius: 5px;
   cursor: pointer;
-
 }
 
-#trash-modal .modal-content #trash-list button:hover {
-  /* Lägg till din anpassade hover-effekt här */
+.restore-btn:hover {
   background-color: rgb(98, 200, 166);
+}
+
+.delete-btn {
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.delete-btn:hover {
+  background-color: rgb(197, 33, 33);
+  color: white;
 }
 
 @keyframes vibrate {

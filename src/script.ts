@@ -125,10 +125,12 @@ function renderTrashList(): void {
     // Lägger till knappar för återställning och radering av todos från papperskorgen.
     const restoreButton: HTMLButtonElement = document.createElement("button");
     restoreButton.textContent = "Återställ";
+    restoreButton.classList.add("restore-btn");
     restoreButton.addEventListener("click", () => restoreTodoFromTrash(todo.id));
 
     const deleteButton: HTMLButtonElement = document.createElement("button");
     deleteButton.textContent = "Radera";
+    deleteButton.classList.add("delete-btn");
     deleteButton.addEventListener("click", () => deleteTodoPermanently(todo.id));
 
     trashItem.appendChild(restoreButton);
