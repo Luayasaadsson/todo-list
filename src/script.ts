@@ -96,6 +96,15 @@ function closeTrashModal(): void {
   }
 }
 
+// Lägger till en händelselyssnare på dokumentet för mousedown-händelsen
+document.addEventListener("mousedown", (event: MouseEvent) => {
+  const modal = document.getElementById("trash-modal");
+  if (modal && !modal.contains(event.target as Node)) {
+      closeTrashModal();
+  }
+});
+
+
 // Lägger till händelselyssnare för att stänga modalen när användaren klickar på stängningsknappen.
 document.addEventListener("DOMContentLoaded", () => {
   const closeButton: HTMLElement | null = document.querySelector(".close");
