@@ -36,6 +36,16 @@ Användare kan med en knapp rensa hela listan om man önskar det. Det är ett sm
 
 Den inkluderade sökfunktionen gör det möjligt för användare att filtrera todos baserat på en sökterm. När användaren skriver in en sökterm uppdateras listan med todos för att endast visa de som innehåller söktermen i sin text. Sökningen är fall-och-sortsensitiv för att ge användarna exakta resultat.
 
+### Bonus: Papperskorg
+
+Förbättrad användarupplevelse med den inbyggda Papperskorgsfunktion. Den tillhandahåller en smidig och effektiv metod för att hantera borttagna todos. Med Papperskorgen kan användare enkelt återställa eller permanent radera borttagna todos enligt deras behov.
+
+- **Återställa Todos**: Hitta och återställ tidigare borttagna todos till huvudlistan för att fortsätta arbetet med dem.
+
+- **Permanent Radering**: Möjligheten att permanent radera borttagna todos ger användare kontroll över sin lista och hjälper till att hålla den organiserad.
+
+För att ytterligare förbättra användarupplevelsen har en diskret vibrationsanimation lagts till på papperskorgen som en visuell indikation på att en todo har flyttats till papperskorgen. Denna visuella återkoppling ger användaren en omedelbar bekräftelse på att deras åtgärd har utförts framgångsrikt och bidrar till att förbättra den övergripande interaktionsupplevelsen.
+
 ## Resonemang
 
 ### Designbeslut
