@@ -1,2 +1,3 @@
-import './css/style.css';
-import './script.ts';
+import "./css/style.css";
+import "./css/media.css";
+import "./script.ts";

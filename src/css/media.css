@@ -1,0 +1,168 @@
+@media (max-width: 1000px) {
+  .todo-list-new {
+    width: 40%;
+  }
+
+  .modal-content {
+    height: 95%;
+  }
+  .trash-text {
+    font-size: 10px;
+  }
+  .close {
+    font-size: 25px;
+  }
+  #trash-modal .modal-content #trash-list li {
+    font-size: 12px;
+  }
+  #trash-modal .modal-content #trash-list button {
+    font-size: 10px;
+  }
+  }
+  
+  @media (max-width: 825px) {
+    .todo-list-new {
+      width: 30%;
+    }
+
+    .modal-content {
+      height: 80%;
+    }
+
+    .trash {
+      font-size: 20px;
+    }
+
+    .trash-text {
+      font-size: 7px;
+    }
+    .close {
+      font-size: 16px;
+    }
+    #trash-modal .modal-content #trash-list li {
+      font-size: 10px;
+    }
+    #trash-modal .modal-content #trash-list button {
+      font-size: 8px;
+    }
+  }
+  
+  @media (max-width: 725px) {
+    .todo-list-new {
+      width: 30%;
+    }
+  
+    .search-todo {
+      width: 30%;
+    }
+  
+    .date-time {
+      font-size: 0.5rem;
+    }
+  
+    span {
+      font-size: 0.6rem;
+    }
+  
+    .add-btn {
+      width: 80px;
+      font-size: 15px;
+    }
+
+    .modal-content {
+      height: 83%;
+    }
+
+    .trash {
+      font-size: 17px;
+    }
+
+    .trash-text {
+      font-size: 7px;
+    }
+    .close {
+      font-size: 15px;
+    }
+  }
+  
+  @media (max-width: 666px) {
+  .add-btn {
+    width: 70px;
+    font-size: 13px;
+  }
+
+  .modal-content {
+    height: 83%;
+  }
+
+  .trash {
+    font-size: 15px;
+  }
+
+  .trash-text {
+    font-size: 5px;
+  }
+  .close {
+    font-size: 10px;
+  }
+  }
+
+  @media (max-width: 542px) {
+    .modal-content {
+      height: 86%;
+    }
+  }
+  
+  @media (max-width: 450px) {
+    .add-btn {
+      font-size: 8px;
+      width: 50px;
+      height: 20px; 
+    }
+  
+    input {
+      font-size: 0.5rem;
+    }
+  
+    #clear-btn {
+      font-size: 0.6rem;
+    }
+  
+    .date-time {
+      font-size: 0.4rem;
+    }
+
+    .modal-content {
+      height: 77%;
+    }
+
+    .trash {
+      font-size: 12px;
+    }
+    
+    .trash-text {
+      font-size: 4px;
+    }
+    .close {
+      font-size: 10px;
+    }
+
+    #trash-modal .modal-content #trash-list li {
+      font-size: 8px;
+    }
+    #trash-modal .modal-content #trash-list button {
+      font-size: 7px;
+    }
+  }
+  
+  @media (max-width: 335px) {
+    .todo-title {
+      font-size: 1rem;
+    }
+    
+    .add-btn {
+      font-size: 6px;
+      width: 40px; 
+      height: 16px;
+    }
+  }
