@@ -18,7 +18,7 @@ model User {
   username String
   password String
   email    String @unique
-  todos    Todo[] // Relation till Todo, en användare kan ha många todos
+  todos    Todo[]
 }
 
 model Todo {
@@ -27,6 +27,6 @@ model Todo {
   content   String @db.Text
   completed Boolean  @default(false)
   published Boolean  @default(false)
-  userId    Int      // Foreign key fr User
+  userId    Int      
   user      User     @relation(fields: [userId], references: [id])
 }
