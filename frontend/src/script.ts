@@ -296,3 +296,21 @@ function editTodo(id: number, textSpan: HTMLSpanElement): void {
     saveTodos(); // Sparar todos.
   }
 }
+
+const modal = document.getElementById('loginModal') as HTMLDivElement;
+const loginBtn = document.querySelector('.login-btn') as HTMLButtonElement;
+const closeBtn = document.querySelector('.Close') as HTMLSpanElement;
+
+loginBtn.onclick = () => {
+  modal.style.display = 'block';
+};
+
+closeBtn.onclick = () => {
+  modal.style.display = 'none';
+};
+
+window.onclick = (event: MouseEvent) => {
+  if (event.target === modal) {
+    modal.style.display = 'none';
+  }
+};

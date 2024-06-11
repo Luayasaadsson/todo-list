@@ -8,14 +8,23 @@
     <title>Todo List</title>
   </head>
   <body>
+    <header>
+      <nav class="nav-bar">
+        <div class="login-logout-container">
+          <button class="login-btn">Log in</button>
+          <button class="logout-btn">Sign out</button>
+
+        </div>
+      </nav>
+    </header>
     <h1 class="todo-title">Things to do...</h1>
     <div class="todo-list-container">
         <div class="todo-list-add">
-          <input class="todo-list-new" type="text" id="new-todo" placeholder="Lägg till en todo...">
+          <input class="todo-list-new" type="text" id="new-todo" placeholder="Add a todo...">
           <button class="add-btn" id="add-btn">
-            <i class="fa-solid fa-plus"></i> Lägg till
+            <i class="fa-solid fa-plus"></i> Add
           </button>      
-          <input class="search-todo" type="text" id="search-input" placeholder="Sök todo...">
+          <input class="search-todo" type="text" id="search-input" placeholder="Search todo...">
 
           <button class="trash" id="trash">
             <i class="fa-regular fa-trash-can"></i>
@@ -24,7 +33,7 @@
             <div class="modal-content">
               <div class="trash-header">
                 <span class="close">&times;</span>
-                <h2 class="trash-text">Papperskorgen</h2>
+                <h2 class="trash-text">Trash</h2>
               </div>
               <ul id="trash-list"></ul>
             </div>
@@ -35,8 +44,22 @@
           <!-- Här genereras alla todos-->
         </ul>
       </div>
-        <button id="clear-btn">Rensa listan</button>
+        <button id="clear-btn">Clear list</button>
 
+    </div>
+   
+    <!-- Modal för inloggning -->
+    <div id="loginModal" class="loginModal">
+      <div class="loginModal-content">
+        <span class="Close">&times;</span>
+        <form id="loginForm" class="loginModal-form">
+          <label for="email">Email:</label>
+          <input type="email" id="email" name="email" required>
+          <label for="password">Password:</label>
+          <input type="password" id="password" name="password" required>
+          <button class="submit-btn" type="submit">Log in</button>
+        </form>
+      </div>
     </div>
    
     <script type="module" src="/src/main.ts"></script>
