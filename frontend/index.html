@@ -47,20 +47,38 @@
         <button id="clear-btn">Clear list</button>
 
     </div>
+
+    <!-- Modal för registrering -->
+<div id="registerModal" class="registerModal">
+  <div class="registerModal-content">
+    <span class="Close">&times;</span>
+    <form id="registerForm" class="registerModal-form">
+      <label for="new-email">Email:</label>
+      <input type="email" id="new-email" name="new-email" required>
+      <label for="new-password">Password:</label>
+      <input type="password" id="new-password" name="new-password" required>
+      <label for="confirm-password">Confirm password:</label>
+      <input type="password" id="confirm-password" name="confirm-password" required>
+      <button class="submit-btn" type="submit">Register</button>
+      <p>Have an account? <button type="button" class="login-btn">Log in</button></p>
+    </form>
+  </div>
+</div>
    
     <!-- Modal för inloggning -->
-    <div id="loginModal" class="loginModal">
-      <div class="loginModal-content">
-        <span class="Close">&times;</span>
-        <form id="loginForm" class="loginModal-form">
-          <label for="email">Email:</label>
-          <input type="email" id="email" name="email" required>
-          <label for="password">Password:</label>
-          <input type="password" id="password" name="password" required>
-          <button class="submit-btn" type="submit">Log in</button>
-        </form>
-      </div>
-    </div>
+   <div id="loginModal" class="loginModal">
+  <div class="loginModal-content">
+    <span class="Close">&times;</span>
+    <form id="loginForm" class="loginModal-form">
+      <label for="email">Email:</label>
+      <input type="email" id="email" name="email" required>
+      <label for="password">Password:</label>
+      <input type="password" id="password" name="password" required>
+      <button class="submit-btn" type="submit">Log in</button>
+      <p>Dont have an account? <button type="button" class="register-btn">Sign up</button></p>
+    </form>
+  </div>
+</div>
    
     <script type="module" src="/src/main.ts"></script>
   </body>

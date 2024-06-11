@@ -297,20 +297,41 @@ function editTodo(id: number, textSpan: HTMLSpanElement): void {
   }
 }
 
-const modal = document.getElementById('loginModal') as HTMLDivElement;
-const loginBtn = document.querySelector('.login-btn') as HTMLButtonElement;
-const closeBtn = document.querySelector('.Close') as HTMLSpanElement;
+const loginModal = document.getElementById('loginModal') as HTMLDivElement;
+const registerModal = document.getElementById('registerModal') as HTMLDivElement;
+const loginBtns = document.querySelectorAll('.login-btn'); 
+const registerBtns = document.querySelectorAll('.register-btn');
+const closeLoginBtn = loginModal.querySelector('.Close') as HTMLSpanElement; 
+const closeRegisterBtn = registerModal.querySelector('.Close') as HTMLSpanElement;
 
-loginBtn.onclick = () => {
-  modal.style.display = 'block';
+// Funktion för att visa inloggningsmodalen
+const showLoginModal = () => {
+  registerModal.style.display = 'none';
+  loginModal.style.display = 'block';
 };
 
-closeBtn.onclick = () => {
-  modal.style.display = 'none';
+// Funktion för att visa registreringsmodalen
+const showRegisterModal = () => {
+  loginModal.style.display = 'none';
+  registerModal.style.display = 'block';
+};
+
+// Lägger till event listeners för alla login och register knappar
+loginBtns.forEach(btn => btn.addEventListener('click', showLoginModal));
+registerBtns.forEach(btn => btn.addEventListener('click', showRegisterModal));
+
+closeLoginBtn.onclick = () => {
+  loginModal.style.display = 'none';
+};
+
+closeRegisterBtn.onclick = () => {
+  registerModal.style.display = 'none';
 };
 
 window.onclick = (event: MouseEvent) => {
-  if (event.target === modal) {
-    modal.style.display = 'none';
+  if (event.target === loginModal) {
+    loginModal.style.display = 'none';
+  } else if (event.target === registerModal) {
+    registerModal.style.display = 'none';
   }
 };
