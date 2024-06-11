@@ -11,7 +11,7 @@ const prisma = new PrismaClient();
 
 // POST /users/register
 router.post("/register", async (req: Request, res: Response) => {
-  const { username, email, password } = req.body;
+  const { email, password } = req.body;
   const saltRounds = 10;
   const hashedPassword = await bcrypt.hash(password, saltRounds);
 
@@ -22,7 +22,7 @@ router.post("/register", async (req: Request, res: Response) => {
     }
 
     const user = await prisma.user.create({
-      data: { username, email, password: hashedPassword },
+      data: { email, password: hashedPassword },
     });
 
     return res.status(201).json({ message: `User with id ${user.id} created` });
@@ -64,13 +64,13 @@ router.put(
   auth,
   async (req: AuthenticatedRequest, res: Response) => {
     const userId = req.user?.id;
-    const { username, email, password } = req.body;
+    const { email, password } = req.body;
     const hashedPassword = await bcrypt.hash(password, 10);
 
     try {
       const updatedUser = await prisma.user.update({
         where: { id: userId },
-        data: { username, email, password: hashedPassword },
+        data: { email, password: hashedPassword },
       });
       res
         .status(200)
@@ -89,7 +89,7 @@ router.get("/:id", auth, async (req: AuthenticatedRequest, res: Response) => {
   try {
     const user = await prisma.user.findUnique({
       where: { id: userId },
-      select: { username: true, email: true, password: true },
+      select: { email: true, password: true },
     });
 
     if (!user) {
