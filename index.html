@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/src/img/coffee.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://kit.fontawesome.com/4206a001c2.js" crossorigin="anonymous"></script>
+    <title>Todo List</title>
+  </head>
+  <body>
+    <h1 class="todo-title">Things to do...</h1>
+    <div class="todo-list-container">
+        <div class="todo-list-add">
+          <input class="todo-list-new" type="text" id="new-todo" placeholder="Add a todo...">
+          <button class="add-btn" id="add-btn">
+            <i class="fa-solid fa-plus"></i> Add
+          </button>      
+          <input class="search-todo" type="text" id="search-input" placeholder="Search todo...">
+
+          <button class="trash" id="trash">
+            <i class="fa-regular fa-trash-can"></i>
+          </button>
+          <div id="trash-modal" class="modal">
+            <div class="modal-content">
+              <div class="trash-header">
+                <span class="close">&times;</span>
+                <h2 class="trash-text">Trash</h2>
+              </div>
+              <ul id="trash-list"></ul>
+            </div>
+          </div>
+          
+
+          <ul id="todo-list">
+          <!-- Här genereras alla todos-->
+        </ul>
+      </div>
+        <button id="clear-btn">Clear list</button>
+
+    </div>
+   
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>
