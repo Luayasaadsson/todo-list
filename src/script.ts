@@ -25,8 +25,19 @@ document.addEventListener("DOMContentLoaded", () => {
   const addButton: HTMLButtonElement = document.getElementById("add-btn") as HTMLButtonElement;
   const clearButton: HTMLButtonElement = document.getElementById("clear-btn") as HTMLButtonElement;
   const newTodoInput: HTMLInputElement = document.getElementById("new-todo") as HTMLInputElement;
+  const todoListContainer = document.querySelector(".todo-list-container") as HTMLInputElement
   const searchInput: HTMLInputElement = document.getElementById("search-input") as HTMLInputElement;
   const trashButton: HTMLButtonElement = document.getElementById("trash") as HTMLButtonElement;
+
+  // Lägger till en händelselyssnare för att zooma in när inmatningsfältet får fokus.
+  newTodoInput.addEventListener("focus", () => {
+    todoListContainer.classList.remove("zoom-out");
+});
+
+// Lägger till en händelselyssnare för att zooma ut när inmatningsfältet förlorar fokus.
+newTodoInput.addEventListener("blur", () => {
+    todoListContainer.classList.add("zoom-out");
+});
 
   // Lägger till händelselyssnare för knappar och inmatningsfält.
   addButton.addEventListener("click", addTodo);

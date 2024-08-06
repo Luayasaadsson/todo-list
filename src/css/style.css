@@ -484,3 +484,8 @@ input[type="checkbox"] {
 #clear-btn:hover {
   background-color: rgb(197, 33, 33);
 }
+
+.zoom-out {
+  transform: scale(1);
+  transition: transform 0.3s ease;
+}
